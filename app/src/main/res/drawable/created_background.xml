@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/snow"/>
+    <item android:top="300dp"
+        android:bottom="-270dp"
+        android:left="-200dp"
+        android:right="-100dp">
+        <rotate
+            android:fromDegrees="50"
+            android:pivotX="100%"
+            android:pivotY="10%">
+            <shape
+                android:shape="oval">
+                <solid
+                    android:color="@color/colorPrimary"
+                    />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

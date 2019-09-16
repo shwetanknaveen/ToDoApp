@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.EditTaskFragment"
+    android:background="#ffffff"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:fontFamily="cursive"
+            android:text="EDIT TASK"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextPriority_editTask"
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:alpha="0.9"
+            android:background="@drawable/rounded_corner_no_background"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:hint="New priority"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextTitle_editTask"
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:background="@drawable/rounded_corner_no_background"
+            android:gravity="center"
+            android:hint="New Title" />
+
+
+        <EditText
+            android:id="@+id/editTextDesc_editTask"
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:alpha="0.9"
+            android:background="@drawable/rounded_corner_no_background"
+            android:gravity="center"
+            android:hint="New Description" />
+
+        <Button
+            android:id="@+id/btnDate_editTask"
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:alpha="0.9"
+            android:background="@drawable/rounded_corner_no_background"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:text="New deadline" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagList_editTask">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/btnEditTask"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit task"
+            android:background="@drawable/rounded_corner_no_background"/>
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

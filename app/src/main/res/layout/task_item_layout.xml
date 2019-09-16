@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/taskItem"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corner_no_background"
+    android:layout_margin="8dp"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <CheckBox
+        android:id="@+id/checkboxTaskStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/imgBtnEditTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/edit_img_btn"
+            android:background="@drawable/rounded_corner_no_background"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+    <TextView
+        android:paddingLeft="5dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/circular_shape_priority_background"
+        android:id="@+id/textViewTaskPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+
+    <LinearLayout
+        android:id="@+id/eventLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewTaskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task Title"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewTaskDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task Description"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textViewTaskDate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:text="Date will go here"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+        <!--textView.setText(DateUtils.formatDateTime(this, System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_YEAR));-->
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:padding="6dp"
+            android:id="@+id/textViewTaskTag"
+            android:gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tag text"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            />
+        <!--TextView testItem = (TextView)findViewById(R.id.testItem);-->
+        <!--GradientDrawable gd = (GradientDrawable) testItem.getBackground().getCurrent();-->
+        <!--gd.setColor(Color.parseColor("#654321")); //In this way we change tag colour dynamically-->
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

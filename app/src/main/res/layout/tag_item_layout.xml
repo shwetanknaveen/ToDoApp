@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tagItem"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:padding="10dp"
+    android:layout_margin="10dp">
+
+        <TextView
+            android:padding="6dp"
+            android:id="@+id/textViewTagItem"
+            android:gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tag text"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            />
+        <!--TextView testItem = (TextView)findViewById(R.id.testItem);-->
+        <!--GradientDrawable gd = (GradientDrawable) testItem.getBackground().getCurrent();-->
+        <!--gd.setColor(Color.parseColor("#654321")); //In this way we change tag colour dynamically-->
+</LinearLayout>
