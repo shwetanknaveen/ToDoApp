@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
     <CheckBox
         android:id="@+id/checkboxTaskStatus"
         android:layout_width="wrap_content"
@@ -19,24 +20,25 @@
 
         <ImageButton
             android:id="@+id/imgBtnEditTask"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/edit_img_btn"
             android:background="@drawable/rounded_corner_no_background"
-            android:layout_marginTop="10dp"/>
+            />
 
     </LinearLayout>
     <TextView
+        android:id="@+id/textViewTaskPriority"
         android:paddingLeft="5dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/circular_shape_priority_background"
-        android:id="@+id/textViewTaskPriority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:text="P"
         android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_gravity="center_vertical"/>
 
 
     <LinearLayout
