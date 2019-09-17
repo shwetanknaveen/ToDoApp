@@ -11,6 +11,7 @@ import com.example.todo3.ui.fragment.HomeFragment;
 import com.example.todo3.ui.fragment.SearchTaskFragment;
 import com.example.todo3.ui.fragment.ShowByDateFragment;
 import com.example.todo3.ui.fragment.ShowUncompletedTaskFragment;
+import com.example.todo3.utilities.Utility;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -19,12 +20,14 @@ import android.view.Menu;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Utility.dateSortFlag = false;
+        Utility.tagSortFlag = false;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +71,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -104,6 +112,8 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+
         return true;
     }
 
@@ -121,14 +131,23 @@ public class MainActivity extends AppCompatActivity
             case R.id.navShowUncompTasks:
                 return new ShowUncompletedTaskFragment();
 
-            case R.id.navSortByDate:
-                return new HomeFragment();
-
-            case R.id.navSortByTag:
-                return new HomeFragment();
-
+            case R.id.navSortByDate: {
+                Switch sortDate = findViewById(R.id.switchBtnDate);
+                Utility.dateSortFlag = !Utility.dateSortFlag;   //toggle its previous value
+                sortDate.setChecked(Utility.dateSortFlag);
+                return new HomeFragment();  //new HomeFragment will be returned with flag status changed and task list will be
+                                            //sorted accordingly
+            }
+            case R.id.navSortByTag: {
+                Switch sortTag = findViewById(R.id.switchBtnTag);
+                Utility.tagSortFlag = !Utility.tagSortFlag;     //toggle its previous value
+                sortTag.setChecked(Utility.tagSortFlag);
+                return new HomeFragment();  //new HomeFragment will be returned with flag status changed and task list will be
+                                            //sorted accordingly
+            }
             default:
                 return null;
+
         }
     }
 

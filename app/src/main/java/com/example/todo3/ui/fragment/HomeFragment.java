@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.todo3.R;
 import com.example.todo3.adapter.TaskAdapter;
 import com.example.todo3.pojo.ToDoTask;
+import com.example.todo3.utilities.Utility;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -63,6 +66,11 @@ public class HomeFragment extends Fragment {
                     //verified with toast that this list get all tasks from firebase
 
                 }
+                if(Utility.dateSortFlag)    //if sort by date switch is on, then sort the task list by date using comparator
+                    Collections.sort(mShowTasksList,taskDateComparator);
+                if(Utility.tagSortFlag)     //if sort by tag switch is on, then sort the task list by tag name using comparator
+                    Collections.sort(mShowTasksList,tagTitleComparator);
+
                 taskList.setAdapter(new TaskAdapter(mShowTasksList, getContext()));
                 shimmerFrameLayout.stopShimmerAnimation();
                 shimmerFrameLayout.setVisibility(View.GONE);
@@ -78,5 +86,18 @@ public class HomeFragment extends Fragment {
 
         return view;
     }//HomeFragment class onCreateView() ends here
+
+    Comparator<ToDoTask> taskDateComparator = new Comparator<ToDoTask>() {
+        @Override
+        public int compare(ToDoTask t1, ToDoTask t2) {
+            return t1.getDateAndTime().compareTo(t2.getDateAndTime());
+        }
+    };
+    Comparator<ToDoTask> tagTitleComparator = new Comparator<ToDoTask>() {
+        @Override
+        public int compare(ToDoTask t1, ToDoTask t2) {
+            return t1.getTag().getTagName().compareTo(t2.getTag().getTagName());
+        }
+    };
 
 }
