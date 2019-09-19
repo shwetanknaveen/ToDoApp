@@ -20,7 +20,19 @@
             android:layout_height="wrap_content" />
 
 
+
     </LinearLayout>
+    <TextView
+        android:id="@+id/textViewTaskPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/circular_shape_priority_background"
+        android:paddingLeft="5dp"
+        android:text="P"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -81,17 +93,7 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewTaskPriority"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/circular_shape_priority_background"
-        android:paddingLeft="5dp"
-        android:text="P"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
 
 
 </LinearLayout>

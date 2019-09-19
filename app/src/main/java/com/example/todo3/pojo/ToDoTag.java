@@ -1,7 +1,7 @@
 package com.example.todo3.pojo;
 
 
-
+import androidx.annotation.Nullable;
 
 public class ToDoTag {
 
@@ -18,6 +18,18 @@ public class ToDoTag {
 
     public ToDoTag(){
 
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+        ToDoTag that = (ToDoTag) obj;
+        if (this.id != that.id) return false;
+        if (!this.tagName.equals(that.tagName)) return false;
+        if (!this.color.equals(that.color)) return false;
+        return true;
     }
 
     public int getId() {

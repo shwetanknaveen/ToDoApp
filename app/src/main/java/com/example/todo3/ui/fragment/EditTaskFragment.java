@@ -4,9 +4,13 @@ package com.example.todo3.ui.fragment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +30,7 @@ import com.example.todo3.adapter.TagAdapter;
 import com.example.todo3.pojo.ToDoTag;
 import com.example.todo3.pojo.ToDoTask;
 import com.example.todo3.ui.helper.DatePickerFragment;
+import com.example.todo3.ui.helper.IOnBackPressed;
 import com.example.todo3.utilities.Utility;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +45,7 @@ import java.util.List;
 import java.util.Set;
 
 
-public class EditTaskFragment extends Fragment {
+public class EditTaskFragment extends Fragment implements IOnBackPressed {
 
     private Context mContext;
     private ToDoTask mEditedTask;
@@ -54,18 +59,19 @@ public class EditTaskFragment extends Fragment {
     private EditText mEditTextTitle;
     private EditText mEditTextDesc;
     private boolean mNewDataFlag;
-
+    private boolean mDontCheck;
 
     public EditTaskFragment() {
         // Required empty public constructor
     }
 
-    public EditTaskFragment(Context context,ToDoTask oldTask) {
+    public EditTaskFragment(Context context, ToDoTask oldTask) {
         mContext = context;
         mEditedTask = new ToDoTask();
         mEditedTask.setId(oldTask.getId());
         mOldTask = oldTask;
         mNewDataFlag = false;
+        mDontCheck = false;
     }
 
 
@@ -162,11 +168,14 @@ public class EditTaskFragment extends Fragment {
                 DatabaseReference myRef = database.getReference("Tasks");
                 myRef.child(Integer.toString(mEditedTask.getId())).setValue(mEditedTask);
 
-                if(mNewDataFlag)
+                if(mNewDataFlag) {
+                    mNewDataFlag = false;   mDontCheck = true;//so that in onBackPressed() method, control should fall in else case
                     Toast.makeText(getContext(), "Task Edited!", Toast.LENGTH_LONG).show();
+                    getActivity().onBackPressed();
+                }
                 else
                     Toast.makeText(getContext(), "Nothing new added!", Toast.LENGTH_LONG).show();
-                getActivity().onBackPressed();
+
 
             }
         });
@@ -231,4 +240,42 @@ public class EditTaskFragment extends Fragment {
     }
 
 
+    @Override
+    public boolean onBackPressed() {    // Whenever it returns true, fragment doesn't get popped out
+
+        if(!mDontCheck) {
+            if (!TextUtils.isEmpty(mEditTextPriority.getText().toString()) && !(Integer.toString(mOldTask.getPriority()).equals(mEditTextPriority.getText().toString())))
+                mNewDataFlag = true;
+            if (!TextUtils.isEmpty(mEditTextTitle.getText().toString()) && !mEditTextTitle.getText().toString().equals(mOldTask.getTitle()))
+                mNewDataFlag = true;
+            if (!TextUtils.isEmpty(mEditTextDesc.getText().toString()) && !mEditTextDesc.getText().toString().equals(mOldTask.getDescription()))
+                mNewDataFlag = true;
+            if (!TextUtils.isEmpty(mDate) && !mDate.equals(mOldTask.getDateAndTime()))
+                mNewDataFlag = true;
+            if (Utility.toDoTag != null && !(Utility.toDoTag.equals(mOldTask.getTag())))
+                mNewDataFlag = true;
+            }
+        if (mNewDataFlag) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle("UNSAVED CHANGES")
+                    .setMessage("Your changes will be lost!");
+            AlertDialog dialog = builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                }
+            }).setPositiveButton("OK!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    mNewDataFlag = false;   //so that it will fall in else case with next line and fragment will be closed
+                    mDontCheck = true;
+                    getActivity().onBackPressed();
+                }
+            }).create();
+
+            dialog.show();
+
+        }
+        else {
+            return false;   //this will close the fragment
+        }
+        return true;    //in default don't close the fragment behind alert Dialog box
+    }
 }

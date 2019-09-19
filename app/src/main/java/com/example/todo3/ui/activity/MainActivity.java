@@ -12,6 +12,7 @@ import com.example.todo3.ui.fragment.HomeFragment;
 import com.example.todo3.ui.fragment.SearchTaskFragment;
 import com.example.todo3.ui.fragment.ShowByDateFragment;
 import com.example.todo3.ui.fragment.ShowUncompletedTaskFragment;
+import com.example.todo3.ui.helper.IOnBackPressed;
 import com.example.todo3.utilities.Utility;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -86,11 +87,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentPlace);
+        if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed())
+        {
+        //this block will be processed when loaded fragment in fragment place will not be edit fragment
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
+
         }
     }
 
@@ -190,4 +198,6 @@ public class MainActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }
