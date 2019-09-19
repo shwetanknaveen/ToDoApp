@@ -1,7 +1,7 @@
 package com.example.todo3.ui.activity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import com.example.todo3.R;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Utility.dateSortFlag = false;
+        Utility.dateSortFlag = false;   //on start of activity both sort switches are off
         Utility.tagSortFlag = false;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -66,9 +66,11 @@ public class MainActivity extends AppCompatActivity
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragmentPlace, fragment);
-                ft.addToBackStack(fragment.getClass().getName());//so that back button get backs to previous state
+                //Once on home screen using home button, so clearing stack here so that back buttons makes exit
+                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                    fm.popBackStack();
+                }
                 ft.commit();
-
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+        FragmentTransaction ft = fm.beginTransaction().setCustomAnimations(R.anim.transition_left_in,R.anim.transition_right_out);
         ft.replace(R.id.fragmentPlace, fragment);
         ft.addToBackStack(fragment.getClass().getName());//so that back button get backs to previous state
         ft.commit();
@@ -137,14 +139,14 @@ public class MainActivity extends AppCompatActivity
                 Utility.dateSortFlag = !Utility.dateSortFlag;   //toggle its previous value
                 sortDate.setChecked(Utility.dateSortFlag);
                 return new HomeFragment();  //new HomeFragment will be returned with flag status changed and task list will be
-                                            //sorted accordingly
+                //sorted accordingly
             }
             case R.id.navSortByTag: {
                 Switch sortTag = findViewById(R.id.switchBtnTag);
                 Utility.tagSortFlag = !Utility.tagSortFlag;     //toggle its previous value
                 sortTag.setChecked(Utility.tagSortFlag);
                 return new HomeFragment();  //new HomeFragment will be returned with flag status changed and task list will be
-                                            //sorted accordingly
+                //sorted accordingly
             }
             default:
                 return null;

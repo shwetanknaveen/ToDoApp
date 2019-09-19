@@ -1,48 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/taskItem"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_corner_no_background"
     android:layout_margin="8dp"
+    android:background="@drawable/rounded_corner_no_background"
+    android:orientation="horizontal"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
-    <CheckBox
-        android:id="@+id/checkboxTaskStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imgBtnEditTask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/edit_img_btn"
-            android:background="@drawable/rounded_corner_no_background"
-            />
+        <CheckBox
+            android:id="@+id/checkboxTaskStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/textViewTaskPriority"
-        android:paddingLeft="5dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/circular_shape_priority_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="P"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_gravity="center_vertical"/>
-
 
     <LinearLayout
-        android:id="@+id/eventLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -68,7 +48,6 @@
             android:id="@+id/textViewTaskDate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:gravity="left"
             android:text="Date will go here"
             android:textAlignment="center"
@@ -78,32 +57,41 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
 
         <TextView
-            android:padding="6dp"
             android:id="@+id/textViewTaskTag"
-            android:gravity="center"
-            android:background="@drawable/rounded_corner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:gravity="center"
+            android:padding="6dp"
             android:text="Tag text"
-            android:textStyle="bold"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            />
+            android:textStyle="bold" />
         <!--TextView testItem = (TextView)findViewById(R.id.testItem);-->
         <!--GradientDrawable gd = (GradientDrawable) testItem.getBackground().getCurrent();-->
         <!--gd.setColor(Color.parseColor("#654321")); //In this way we change tag colour dynamically-->
 
 
-
-
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textViewTaskPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/circular_shape_priority_background"
+        android:paddingLeft="5dp"
+        android:text="P"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

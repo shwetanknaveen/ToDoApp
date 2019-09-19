@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.todo3.R;
 import com.example.todo3.pojo.ToDoTask;
 import com.example.todo3.ui.fragment.EditTaskFragment;
+import com.example.todo3.ui.helper.DetailTaskDialogFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -60,8 +61,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         final ToDoTask toDoTask = mTasks.get(position);
 
-        holder.textViewTaskTitle.setText(toDoTask.getTitle());
-        holder.textViewTaskDesc.setText(toDoTask.getDescription());
+        int titleLength = toDoTask.getTitle().length();
+        int desLength = toDoTask.getDescription().length();
+
+        if(titleLength>15)
+            holder.textViewTaskTitle.setText(toDoTask.getTitle().substring(0,14)+"...");
+        else
+            holder.textViewTaskTitle.setText(toDoTask.getTitle());
+
+        if(desLength>15)
+            holder.textViewTaskDesc.setText(toDoTask.getDescription().substring(0,14)+"...");
+        else
+            holder.textViewTaskDesc.setText(toDoTask.getDescription());
 
         holder.textViewTaskTag.setText(toDoTask.getTag().getTagName());
 
@@ -79,7 +90,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.checkBoxTaskStatus.setChecked(false);
         }
         holder.textViewTaskPriority.setText(Integer.toString(toDoTask.getPriority()));
-        holder.textViewTaskDate.setText(toDoTask.getDateAndTime());
+        holder.textViewTaskDate.setText(toDoTask.getDateAndTime().substring(0,10)); //show only date in home fragment
 
         /*FOR MARKING TASKS COMPLETED OR UNCOMPLETED*/
         holder.checkBoxTaskStatus.setOnClickListener(new View.OnClickListener() {
@@ -104,43 +115,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         });
         /*CHANGING STATUS OF TASK LOGIC ENDS HERE*/
 
-        /*DELETION OF TASK*/
+        /*Opening dialog fragment for deletion or editing task*/
         holder.eventLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("Task deletion....")
-                        .setMessage("Do you want to delete this task ?");
-                AlertDialog dialog = builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        /* User clicked cancel so do some stuff */
-                    }
-                }).setPositiveButton("Yes!", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        mRef.child(Integer.toString(mTasks.get(position).getId())).removeValue();
-                    }
-                }).create();
-
-                dialog.show();
-            }
-        });
-        /*DELETION OF TASK ENDS HERE*/
-
-        /*TASK EDITION*/
-        holder.imageBtnEditTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = new EditTaskFragment(mContext, mTasks.get(position));
+            public void onClick(View view) {//eventLinearLayout is the task item's parent item in its layout
+                DetailTaskDialogFragment detailTaskDialogFragment = new DetailTaskDialogFragment(mTasks.get(position),mContext,view);
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentPlace, fragment);
-                fragmentTransaction.addToBackStack(fragment.getClass().getName());//so that back button get backs to previous state
-                fragmentTransaction.commit();
+                detailTaskDialogFragment.show(fragmentManager,"Detail");
+
             }
         });
-        /*TASK EDITION ENDS HERE*/
-
+        /*DELETION or editing ends here*/
 
     }
 
@@ -167,8 +153,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             textViewTaskDesc = itemView.findViewById(R.id.textViewTaskDesc);
             textViewTaskDate = itemView.findViewById(R.id.textViewTaskDate);
             textViewTaskTag = itemView.findViewById(R.id.textViewTaskTag);
-            eventLinearLayout = itemView.findViewById(R.id.eventLinearLayout);
-            imageBtnEditTask = itemView.findViewById(R.id.imgBtnEditTask);
+            eventLinearLayout = itemView.findViewById(R.id.taskItem);
         }
     }
 }

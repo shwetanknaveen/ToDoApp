@@ -3,31 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AddTaskFragment"
-    android:background = "@drawable/created_background"
+    android:background="@drawable/created_background"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".ui.fragment.AddTaskFragment">
 
     <LinearLayout
-        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
-
+        android:paddingTop="40dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-50dp"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="cursive"
+            android:gravity="center_horizontal"
             android:text="ADD YOUR TASK HERE"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+
+
+
+
+
 
         <EditText
             android:id="@+id/editTextPriority"
             android:layout_width="@dimen/btn_width"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="15dp"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_no_background"
@@ -38,52 +44,63 @@
 
         <EditText
             android:id="@+id/editTextTitle"
-            android:layout_width="@dimen/btn_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_no_background"
             android:gravity="center"
-            android:hint="Title" />
-
+            android:hint="Title"
+            android:minWidth="@dimen/btn_width" />
 
         <EditText
             android:id="@+id/editTextDesc"
-            android:layout_width="@dimen/btn_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="15dp"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_no_background"
             android:gravity="center"
-            android:hint="Description" />
+            android:hint="Description"
+            android:minWidth="@dimen/btn_width" />
 
         <Button
             android:id="@+id/btnDate"
-            android:layout_width="@dimen/btn_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="15dp"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_no_background"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
+            android:minWidth="@dimen/btn_width"
             android:text="Deadline" />
 
-        <include layout="@layout/shimmer_tagplaceholder_layout"/>
-        <androidx.recyclerview.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
+        <include
+            layout="@layout/shimmer_tagplaceholder_layout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tagList">
+            android:layout_gravity="center_horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tagList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
 
 
+
         <Button
             android:id="@+id/btnAddTask"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add task"
-            android:background="@drawable/rounded_corner_no_background"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_corner_no_background"
+            android:text="Add task" />
 
     </LinearLayout>
 

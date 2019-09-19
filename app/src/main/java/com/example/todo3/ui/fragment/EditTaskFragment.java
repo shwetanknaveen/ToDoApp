@@ -53,6 +53,7 @@ public class EditTaskFragment extends Fragment {
     private EditText mEditTextPriority;
     private EditText mEditTextTitle;
     private EditText mEditTextDesc;
+    private boolean mNewDataFlag;
 
 
     public EditTaskFragment() {
@@ -64,6 +65,7 @@ public class EditTaskFragment extends Fragment {
         mEditedTask = new ToDoTask();
         mEditedTask.setId(oldTask.getId());
         mOldTask = oldTask;
+        mNewDataFlag = false;
     }
 
 
@@ -119,28 +121,37 @@ public class EditTaskFragment extends Fragment {
         mBtnEditTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.isEmpty(mEditTextPriority.getText().toString()))
+                if(!TextUtils.isEmpty(mEditTextPriority.getText().toString())) {
                     mEditedTask.setPriority(Integer.parseInt(mEditTextPriority.getText().toString()));
-                else
-                    mEditedTask.setPriority(mOldTask.getId());//retaining old priority
+                    mNewDataFlag = true;
+                }
+                    else
+                    mEditedTask.setPriority(mOldTask.getPriority());//retaining old priority
 
-                if(!TextUtils.isEmpty(mEditTextTitle.getText().toString()))
+                if(!TextUtils.isEmpty(mEditTextTitle.getText().toString())) {
                     mEditedTask.setTitle(mEditTextTitle.getText().toString());
-                else
+                    mNewDataFlag = true;
+                }
+                    else
                     mEditedTask.setTitle(mOldTask.getTitle());//retaining old title
 
-                if(!TextUtils.isEmpty(mEditTextDesc.getText().toString()))
+                if(!TextUtils.isEmpty(mEditTextDesc.getText().toString())) {
                     mEditedTask.setDescription(mEditTextDesc.getText().toString());
+                    mNewDataFlag = true;
+                }
                 else
                     mEditedTask.setDescription(mOldTask.getDescription());//retaining old description
 
-                if(!TextUtils.isEmpty(mDate))
+                if(!TextUtils.isEmpty(mDate)) {
                     mEditedTask.setDateAndTime(mDate);
-                else
+                    mNewDataFlag = true;
+                }
+                    else
                     mEditedTask.setDateAndTime(mOldTask.getDateAndTime());
 
                 if(Utility.toDoTag != null)
                 {
+                    mNewDataFlag = true;
                     mEditedTask.setTag(Utility.toDoTag);
                     Utility.toDoTag = null;
                 }
@@ -151,13 +162,17 @@ public class EditTaskFragment extends Fragment {
                 DatabaseReference myRef = database.getReference("Tasks");
                 myRef.child(Integer.toString(mEditedTask.getId())).setValue(mEditedTask);
 
-                Toast.makeText(getContext(), "Task Edited!", Toast.LENGTH_LONG).show();
+                if(mNewDataFlag)
+                    Toast.makeText(getContext(), "Task Edited!", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), "Nothing new added!", Toast.LENGTH_LONG).show();
                 getActivity().onBackPressed();
 
             }
         });
         return view;
     }
+
 
     public void showDatePicker() {
         DatePickerFragment date = new DatePickerFragment();
