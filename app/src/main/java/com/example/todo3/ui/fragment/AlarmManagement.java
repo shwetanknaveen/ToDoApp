@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -27,15 +28,13 @@ import com.example.todo3.ui.helper.DatePickerFragment;
 
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AlarmManagement extends Fragment {
 
 
     private ToDoTask mToDoTask;
     private Context mContext;
     private int mYear, mDay, mMonth, mHour, mMinute;
+    private TextView mTextViewAlarmDetail;
 
     public AlarmManagement()
     {
@@ -55,12 +54,13 @@ public class AlarmManagement extends Fragment {
         View view = inflater.inflate(R.layout.fragment_alarm_management, container, false);
         Button btnAlarmTime = view.findViewById(R.id.btnAlarmTime);
         Button btnSetAlarm = view.findViewById(R.id.btnSetAlarm);
-
+        mTextViewAlarmDetail = view.findViewById(R.id.textViewAlarmDetail);
+        mTextViewAlarmDetail.setText("Set alarm for \""+mToDoTask.getTitle()+"\"\nDeadline is -:\n"+
+                mToDoTask.getDateAndTime().substring(0,10)+"\n"+mToDoTask.getDateAndTime().substring(11));
         btnAlarmTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePicker();
-                showTimePicker();
             }
         });
 
@@ -80,7 +80,7 @@ public class AlarmManagement extends Fragment {
         return view;
     }
 
-    public void showDatePicker() {
+    private void showDatePicker() {
         DatePickerFragment date = new DatePickerFragment();
 
         Calendar calender = Calendar.getInstance();
@@ -101,17 +101,20 @@ public class AlarmManagement extends Fragment {
             mYear = year;
             mMonth = monthOfYear;
             mDay = dayOfMonth;
+            showTimePicker();
         }
     };
 
-    public void showTimePicker() {
-
+    private void showTimePicker() {
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 mHour = hour;
                 mMinute = minute;
+
+                mTextViewAlarmDetail.setText("Alarm time selected for task \""+mToDoTask.getTitle()+"\" on time :\n"
+                        +mDay+"/"+mMonth+"/"+mYear+" at\n"+mHour+" : "+mMinute);
             }
         }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
         timePickerDialog.show();
@@ -129,7 +132,7 @@ public class AlarmManagement extends Fragment {
             Toast.makeText(mContext, "Selected time has passed!", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        Toast.makeText(mContext, "Alarm has been set!", Toast.LENGTH_LONG).show();
         alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
 
         if (android.os.Build.VERSION.SDK_INT >= 19) {

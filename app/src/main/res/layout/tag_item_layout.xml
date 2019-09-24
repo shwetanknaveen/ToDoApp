@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tagItem"
-    android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:layout_gravity="center"
-    android:padding="10dp"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
-        <TextView
-            android:padding="6dp"
-            android:id="@+id/textViewTagItem"
-            android:gravity="center"
-            android:background="@drawable/rounded_corner"
-            android:minHeight="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tag text"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            />
+    <TextView
+        android:id="@+id/textViewTagItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:gravity="center"
+        android:minWidth="50dp"
+        android:minHeight="50dp"
+        android:padding="8dp"
+        android:text="Tag text"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 </LinearLayout>

@@ -29,6 +29,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.example.todo3.R;
 import com.example.todo3.pojo.ToDoTask;
 import com.example.todo3.ui.fragment.EditTaskFragment;
@@ -102,9 +104,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         if (mTasks.get(position).getStatus()) {
             holder.checkBoxTaskStatus.setChecked(true);
             mGd.setColor(Color.parseColor("#9EC9FF"));
+            holder.lottieAnimationView.setAnimation("completed.json");
+            holder.lottieAnimationView.playAnimation();
+            holder.lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
         } else {
             holder.checkBoxTaskStatus.setChecked(false);
             mGd.setColor(Color.parseColor("#3360FF"));
+            holder.lottieAnimationView.setAnimation("pending.json");
+            holder.lottieAnimationView.playAnimation();
+            holder.lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
         }
 //        holder.textViewTaskPriority.setText(Integer.toString(toDoTask.getPriority()));
         holder.textViewTaskDate.setText(toDoTask.getDateAndTime().substring(0,10)); //show only date in home fragment
@@ -163,6 +171,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         RelativeLayout eventRelativeLayout;
         TextView imageViewTaskStatus;
         TextView imageViewTaskPriority;
+        LottieAnimationView lottieAnimationView;
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBoxTaskStatus = itemView.findViewById(R.id.checkboxTaskStatus);
@@ -175,6 +184,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             eventRelativeLayout = itemView.findViewById(R.id.taskItem);
             imageViewTaskStatus = itemView.findViewById(R.id.imageViewTaskStatus);
             imageViewTaskPriority = itemView.findViewById(R.id.imageViewPriority);
+            lottieAnimationView = itemView.findViewById(R.id.lottieAnimation);
         }
 
     }

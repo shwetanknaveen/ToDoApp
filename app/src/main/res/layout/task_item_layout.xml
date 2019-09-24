@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/taskItem"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <TextView
         android:id="@+id/imageViewTaskStatus"
@@ -30,7 +32,7 @@
         <RelativeLayout
             android:background="#CACCCE"
             android:id="@+id/titleDesContainer"
-            android:layout_width="250dp"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/checkboxTaskStatus"
             android:minWidth="250dp"
@@ -88,7 +90,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tag text"
-                android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -103,6 +104,14 @@
             android:tint="#29487D"
             android:translationX="13dp"
             android:translationY="13dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
 
     </RelativeLayout>
 

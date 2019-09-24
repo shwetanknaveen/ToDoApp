@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.todo3.R;
 import com.example.todo3.adapter.TaskAdapter;
@@ -52,6 +53,8 @@ public class HomeFragment extends Fragment {
         final ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer);
         shimmerFrameLayout.setAutoStart(true);
 
+        final LinearLayout shimmerContainer = view.findViewById(R.id.shimmerContainer);
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,6 +77,7 @@ public class HomeFragment extends Fragment {
                 taskList.setAdapter(new TaskAdapter(mShowTasksList, getContext()));
                 shimmerFrameLayout.stopShimmerAnimation();
                 shimmerFrameLayout.setVisibility(View.GONE);
+                shimmerContainer.setVisibility(View.GONE);
 
             }
 

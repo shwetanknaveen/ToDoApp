@@ -9,18 +9,16 @@
     android:focusable="true">
 
    <LinearLayout
-       android:padding="@dimen/padding_addtag_main_layout"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical"
        android:gravity="center">
 
        <TextView
-
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginTop="-80dp"
-           android:layout_marginBottom="50dp"
+           android:layout_marginBottom="20dp"
            android:fontFamily="cursive"
            android:text="ADD NEW TAG"
            android:textSize="@dimen/txt_size_addtag_fragment"
@@ -33,6 +31,7 @@
            android:layout_height="wrap_content"
            android:hint="Title"
            android:gravity="center"
+           android:padding="@dimen/padding_8"
            android:alpha="0.9"
            android:layout_margin="15dp" />
 
@@ -54,7 +53,31 @@
            android:layout_height="wrap_content"
            android:text="ADD TAG"
            android:textStyle="bold"
-           android:background="@drawable/rounded_corner_no_background" />
+           android:background="@drawable/rounded_corner_button" />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:layout_marginBottom="20dp"
+           android:fontFamily="cursive"
+           android:text="DELETE TAGS"
+           android:textSize="@dimen/txt_size_addtag_fragment"
+           android:textStyle="bold" />
+
+       <androidx.recyclerview.widget.RecyclerView
+           xmlns:android="http://schemas.android.com/apk/res/android"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/tagList_manageTags" />
+
+       <Button
+           android:id="@+id/btnDeleteTag"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:padding="@dimen/padding_8"
+           android:text="DELETE TAG"
+           android:background="@drawable/rounded_corner_button"
+           android:textStyle="bold"/>
 
 
    </LinearLayout>

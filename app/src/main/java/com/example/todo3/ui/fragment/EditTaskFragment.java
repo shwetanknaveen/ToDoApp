@@ -51,7 +51,7 @@ public class EditTaskFragment extends Fragment implements IOnBackPressed {
     private ToDoTask mEditedTask;
     private ToDoTask mOldTask;
     private List<ToDoTag> mShowTagList = new ArrayList<>(); //this list stores all stored tags on firebase to give user option to add tag
-    private RecyclerView mtagList;
+    private RecyclerView mTagList;
     private Button mBtnNewDeadline;
     private Button mBtnEditTask;
     private String mDate;
@@ -80,8 +80,8 @@ public class EditTaskFragment extends Fragment implements IOnBackPressed {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_task, container, false);
-        mtagList = view.findViewById(R.id.tagList_editTask);
-        mtagList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mTagList = view.findViewById(R.id.tagList_editTask);
+        mTagList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         //to show the tags in horizontal layout
         mBtnNewDeadline = view.findViewById(R.id.btnDate_editTask);
         mBtnEditTask = view.findViewById(R.id.btnEditTask);
@@ -107,7 +107,7 @@ public class EditTaskFragment extends Fragment implements IOnBackPressed {
                 for (String s : arrayList) {
                     mShowTagList.add(dataSnapshot.child(s).getValue(ToDoTag.class));
                 }
-                mtagList.setAdapter(new TagAdapter(mShowTagList, getContext()));
+                mTagList.setAdapter(new TagAdapter(mShowTagList, getContext()));
             }
 
             @Override

@@ -29,6 +29,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-database:16.0.4'
 
+    //for lottie library
+    implementation 'com.airbnb.android:lottie:3.0.7'
+
     //for color picker
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
 
