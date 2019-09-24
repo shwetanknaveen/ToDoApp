@@ -18,5 +18,6 @@
     <dimen name="padding_btn_addtag_frag">10dp</dimen>
     <dimen name="padding_100">100dp</dimen>
     <dimen name="text_size_30">30sp</dimen>
+    <dimen name="inter_task_spacing_10dp">10dp</dimen>
 
 </resources>

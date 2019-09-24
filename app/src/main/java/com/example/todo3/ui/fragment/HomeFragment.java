@@ -90,7 +90,16 @@ public class HomeFragment extends Fragment {
     Comparator<ToDoTask> taskDateComparator = new Comparator<ToDoTask>() {
         @Override
         public int compare(ToDoTask t1, ToDoTask t2) {
-            return t1.getDateAndTime().compareTo(t2.getDateAndTime());
+            //coming date format is DD/MM/YYYY<2 SPACES>HH<SPACE>:<SPACE>MM
+            //format in which date should be compared is YYYYMMDDHH<SPACE>:<SPACE>MM
+            String time1 = t1.getDateAndTime();
+            String newDateT1 = time1.substring(6,9)+time1.substring(3,4)+time1.substring(0,1)+time1.substring(12);
+
+            String time2 = t2.getDateAndTime();
+            String newDateT2 = time2.substring(6,9)+time2.substring(3,4)+time2.substring(0,1)+time2.substring(12);
+
+            //return t1.getDateAndTime().compareTo(t2.getDateAndTime());
+            return newDateT1.compareTo(newDateT2);
         }
     };
     Comparator<ToDoTask> tagTitleComparator = new Comparator<ToDoTask>() {

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="170dp"
+    android:background="@drawable/created_background"
     android:minWidth="250dp"
-    android:paddingTop="60dp"
-    android:background="@drawable/created_background">
+    android:minHeight="170dp"
+    android:orientation="vertical"
+    android:paddingTop="60dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,40 +14,58 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewTaskPriority_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/circular_shape_priority_background"
+            android:paddingLeft="5dp"
+            android:text="P"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
             android:id="@+id/textViewTaskTitle_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Task Title"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewTaskDesc_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Task Description"
             android:textSize="15sp"
-            android:textStyle="italic"
-            android:gravity="center_horizontal" />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textViewTaskDate_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:text="Date will go here"
             android:textAlignment="center"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp"/>
+            android:textSize="15sp" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnAlarmManage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="ALARM MANAGEMENT" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btnDeleteTask"

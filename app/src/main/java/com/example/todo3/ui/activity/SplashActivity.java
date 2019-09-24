@@ -12,7 +12,7 @@ import com.example.todo3.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIMEOUT = 4000;
+    private static int SPLASH_TIMEOUT = 4000;   //Splash screen will be shown for 4 seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

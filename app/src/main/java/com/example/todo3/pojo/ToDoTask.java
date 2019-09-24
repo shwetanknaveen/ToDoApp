@@ -1,7 +1,8 @@
 package com.example.todo3.pojo;
+import java.io.Serializable;
 
 
-public class ToDoTask {
+public class ToDoTask implements Serializable {
 
 
     private int id;     //will be primary key and will be pushed as hashcode of object itself

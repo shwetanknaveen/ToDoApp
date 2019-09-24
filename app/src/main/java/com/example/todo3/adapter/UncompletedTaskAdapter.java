@@ -64,7 +64,7 @@ public class UncompletedTaskAdapter extends RecyclerView.Adapter<UncompletedTask
         public UncompletedTaskViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBoxTaskStatus = (CheckBox)itemView.findViewById(R.id.checkboxTaskStatus);
-            textViewTaskPriority  = (TextView)itemView.findViewById(R.id.textViewTaskPriority);
+            //textViewTaskPriority  = (TextView)itemView.findViewById(R.id.textViewTaskPriority);
             textViewTaskTitle = (TextView)itemView.findViewById(R.id.textViewTaskTitle);
             textViewTaskDesc = (TextView)itemView.findViewById(R.id.textViewTaskDesc);
             textViewTaskDate = (TextView)itemView.findViewById(R.id.textViewTaskDate);

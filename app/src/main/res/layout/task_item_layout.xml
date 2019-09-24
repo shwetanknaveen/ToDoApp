@@ -1,99 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/taskItem"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@drawable/rounded_corner_no_background"
-    android:orientation="horizontal"
-    android:padding="10dp">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/imageViewTaskStatus"
+        android:layout_width="20dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="@dimen/inter_task_spacing_10dp"
+        android:background="@drawable/rounded_left_corner" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/inter_task_spacing_10dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/rounded_right_corner">
 
         <CheckBox
             android:id="@+id/checkboxTaskStatus"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-
-    </LinearLayout>
-    <TextView
-        android:id="@+id/textViewTaskPriority"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/circular_shape_priority_background"
-        android:paddingLeft="5dp"
-        android:text="P"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textViewTaskTitle"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Title"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true" />
 
-        <TextView
-            android:id="@+id/textViewTaskDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task Description"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-
-        <TextView
-            android:id="@+id/textViewTaskDate"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:background="#CACCCE"
+            android:id="@+id/titleDesContainer"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:gravity="left"
-            android:text="Date will go here"
-            android:textAlignment="center"
-            android:textSize="15sp" />
-        <!--textView.setText(DateUtils.formatDateTime(this, System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_YEAR));-->
+            android:layout_toEndOf="@+id/checkboxTaskStatus"
+            android:minWidth="250dp"
+            >
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTaskTitle"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:text="Task Title"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTaskDesc"
+                    android:textStyle="italic"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:text="Task Description"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTaskDate"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="Date will go here"
+                    android:textSize="15sp"/>
+            </LinearLayout>
 
-    </LinearLayout>
+        </RelativeLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/textViewTaskTag"
+        <LinearLayout
+            android:id="@+id/tagContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner"
             android:gravity="center"
-            android:padding="6dp"
-            android:text="Tag text"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-        <!--TextView testItem = (TextView)findViewById(R.id.testItem);-->
-        <!--GradientDrawable gd = (GradientDrawable) testItem.getBackground().getCurrent();-->
-        <!--gd.setColor(Color.parseColor("#654321")); //In this way we change tag colour dynamically-->
+            android:layout_toEndOf="@+id/titleDesContainer"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true">
+            <TextView
+                android:padding="6dp"
+                android:id="@+id/textViewTaskTag"
+                android:gravity="center"
+                android:background="@drawable/rounded_corner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tag text"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
 
+        <TextView
+            android:id="@+id/imageViewPriority"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shape_corner_circle"
+            android:tint="#29487D"
+            android:translationX="13dp"
+            android:translationY="13dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-
-
-
-</LinearLayout>
+</RelativeLayout>
