@@ -14,13 +14,13 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/textViewAlarmDetail"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="@dimen/spacing_150dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/spacing_20dp"
             android:fontFamily="cursive"
             android:gravity="center_horizontal"
-            android:textSize="30sp" />
+            android:textSize="@dimen/text_size_30" />
         <Button
             android:id="@+id/btnAlarmTime"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
             android:fontFamily="monospace"
             android:paddingLeft="@dimen/padding_10"
             android:paddingRight="@dimen/padding_10"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/margin_15dp"
             android:background="@drawable/rounded_corner_no_background"
             android:text="SET ALARM"
             android:textStyle="bold" />

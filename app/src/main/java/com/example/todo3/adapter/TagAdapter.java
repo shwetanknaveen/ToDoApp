@@ -45,7 +45,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final TagViewHolder holder, final int position) {
         holder.textViewTagItem.setText(mTags.get(position).getTagName());
-        //holder.textViewTagItem.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tag_tick_icon, 0, 0, 0);
+
         mGd = (GradientDrawable) holder.textViewTagItem.getBackground().getCurrent();
 
         if (!TextUtils.isEmpty(mTags.get(position).getColor()))

@@ -6,9 +6,10 @@
     android:layout_margin="4dp"
     android:background="@drawable/rounded_corner_no_background"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="@dimen/padding_10">
 
-    <com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/shimmer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,8 +37,8 @@
 
             <include layout="@layout/task_item_layout" />
 
-
         </LinearLayout>
+
     </com.facebook.shimmer.ShimmerFrameLayout>
 
 </LinearLayout>

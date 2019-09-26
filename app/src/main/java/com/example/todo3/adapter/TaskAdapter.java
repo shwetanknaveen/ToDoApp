@@ -2,18 +2,13 @@ package com.example.todo3.adapter;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,19 +16,15 @@ import android.widget.Toast;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StyleableRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
 import com.example.todo3.R;
 import com.example.todo3.pojo.ToDoTask;
-import com.example.todo3.ui.fragment.EditTaskFragment;
 import com.example.todo3.ui.helper.DetailTaskDialogFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +35,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private List<ToDoTask> mTasks;
     private Context mContext;
     private DatabaseReference mRef;
+    private ToDoTask mSelectedTask;
 
     public TaskAdapter(List<ToDoTask> tasks, Context context) {
         this.mTasks = tasks;
@@ -51,6 +43,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("Tasks");
+        mSelectedTask = new ToDoTask();
     }
 
     @NonNull
@@ -87,7 +80,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         if (!TextUtils.isEmpty(toDoTask.getTag().getColor()))
             mGd.setColor(Color.parseColor(toDoTask.getTag().getColor()));
         else
-            mGd.setColor(Color.parseColor("#123455"));//setting default color
+            mGd.setColor(Color.parseColor("#123456"));//setting default color
 
         mGd = (GradientDrawable) holder.imageViewTaskPriority.getBackground().getCurrent();
         if(toDoTask.getPriority()==1) {
@@ -114,7 +107,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.lottieAnimationView.playAnimation();
             holder.lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
         }
-//        holder.textViewTaskPriority.setText(Integer.toString(toDoTask.getPriority()));
         holder.textViewTaskDate.setText(toDoTask.getDateAndTime().substring(0,10)); //show only date in home fragment
 
         /*FOR MARKING TASKS COMPLETED OR UNCOMPLETED*/
@@ -124,7 +116,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 if (holder.checkBoxTaskStatus.isChecked()) {
                     Toast.makeText(mContext, toDoTask.getTitle() + " marked COMPLETED", Toast.LENGTH_SHORT).show();
                     holder.checkBoxTaskStatus.setChecked(true);
-
                     toDoTask.setStatus(true);
                     mTasks.set(position, toDoTask);
                     mRef.child(Integer.toString(mTasks.get(position).getId())).setValue(toDoTask);
@@ -135,7 +126,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     mTasks.set(position, toDoTask);
                     mRef.child(Integer.toString(mTasks.get(position).getId())).setValue(toDoTask);
                 }
-
             }
         });
         /*CHANGING STATUS OF TASK LOGIC ENDS HERE*/
@@ -162,30 +152,47 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
         CheckBox checkBoxTaskStatus;
-        TextView textViewTaskPriority;
         TextView textViewTaskTitle;
         TextView textViewTaskDesc;
         TextView textViewTaskDate;
         TextView textViewTaskTag;
-        //LinearLayout eventLinearLayout;
         RelativeLayout eventRelativeLayout;
         TextView imageViewTaskStatus;
         TextView imageViewTaskPriority;
         LottieAnimationView lottieAnimationView;
-        public TaskViewHolder(@NonNull View itemView) {
+
+        public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
             checkBoxTaskStatus = itemView.findViewById(R.id.checkboxTaskStatus);
-            //textViewTaskPriority = itemView.findViewById(R.id.textViewTaskPriority);
             textViewTaskTitle = itemView.findViewById(R.id.textViewTaskTitle);
             textViewTaskDesc = itemView.findViewById(R.id.textViewTaskDesc);
             textViewTaskDate = itemView.findViewById(R.id.textViewTaskDate);
             textViewTaskTag = itemView.findViewById(R.id.textViewTaskTag);
-//            eventLinearLayout = itemView.findViewById(R.id.taskItem);
             eventRelativeLayout = itemView.findViewById(R.id.taskItem);
             imageViewTaskStatus = itemView.findViewById(R.id.imageViewTaskStatus);
             imageViewTaskPriority = itemView.findViewById(R.id.imageViewPriority);
             lottieAnimationView = itemView.findViewById(R.id.lottieAnimation);
-        }
 
+
+
+//            checkBoxTaskStatus.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mSelectedTask = mTasks.get(getAdapterPosition());
+//                    if (checkBoxTaskStatus.isChecked()) {
+//                        Toast.makeText(mContext, mSelectedTask.getTitle() + " marked COMPLETED", Toast.LENGTH_SHORT).show();
+//                        mSelectedTask.setStatus(true);
+//                        mTasks.set(getAdapterPosition(), mSelectedTask);    //list of task get updated with that changed task
+//                        mRef.child(Integer.toString(mTasks.get(getAdapterPosition()).getId())).setValue(mSelectedTask);
+//                    } else {
+//                        Toast.makeText(mContext, mTasks.get(getAdapterPosition()).getTitle() + " marked UNCOMPLETED", Toast.LENGTH_SHORT).show();
+//                        mSelectedTask.setStatus(false);
+//                        mTasks.set(getAdapterPosition(), mSelectedTask);
+//                        mRef.child(Integer.toString(mTasks.get(getAdapterPosition()).getId())).setValue(mSelectedTask);
+//                    }
+//                }
+//            });
+
+        }
     }
 }

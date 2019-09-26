@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/taskItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingLeft="@dimen/padding_10"
+    android:paddingRight="@dimen/padding_10">
 
     <TextView
         android:id="@+id/imageViewTaskStatus"
         android:layout_width="20dp"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/task_item_height"
         android:layout_marginTop="@dimen/inter_task_spacing_10dp"
         android:background="@drawable/rounded_left_corner" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="@dimen/task_item_height"
+        android:layout_marginLeft="@dimen/margin_20dp"
         android:layout_marginTop="@dimen/inter_task_spacing_10dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/rounded_right_corner">
@@ -34,9 +36,7 @@
             android:id="@+id/titleDesContainer"
             android:layout_width="220dp"
             android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/checkboxTaskStatus"
-            android:minWidth="250dp"
-            >
+            android:layout_toEndOf="@+id/checkboxTaskStatus">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewTaskTitle"
                     android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_20sp"
                     android:gravity="center"
                     android:text="Task Title"/>
                 <TextView
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewTaskDesc"
                     android:textStyle="italic"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/text_size_15sp"
                     android:gravity="center"
                     android:text="Task Description"/>
                 <TextView
@@ -68,7 +68,7 @@
                     android:textAlignment="center"
                     android:gravity="center"
                     android:text="Date will go here"
-                    android:textSize="15sp"/>
+                    android:textSize="@dimen/text_size_15sp"/>
             </LinearLayout>
 
         </RelativeLayout>
@@ -83,7 +83,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true">
             <TextView
-                android:padding="6dp"
+                android:padding="@dimen/padding_8"
                 android:id="@+id/textViewTaskTag"
                 android:gravity="center"
                 android:background="@drawable/rounded_corner"
@@ -91,13 +91,13 @@
                 android:layout_height="wrap_content"
                 android:text="Tag text"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="@dimen/text_size_15sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/imageViewPriority"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/shape_size_40dp"
+            android:layout_height="@dimen/shape_size_40dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/shape_corner_circle"
@@ -107,11 +107,10 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimation"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/shape_size_40dp"
+            android:layout_height="@dimen/shape_size_40dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            />
+            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 

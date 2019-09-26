@@ -21,9 +21,9 @@
             android:fontFamily="cursive"
             android:gravity="center_horizontal"
             android:text="ADD YOUR TASK HERE"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="50dp"
-            android:textSize="30sp"
+            android:layout_marginTop="@dimen/spacing_20dp"
+            android:layout_marginBottom="@dimen/spacing_50dp"
+            android:textSize="@dimen/text_size_30"
             android:textStyle="bold" />
 
         <EditText
@@ -31,7 +31,7 @@
             android:layout_width="@dimen/btn_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/margin_15dp"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_no_background"
             android:fontFamily="sans-serif-smallcaps"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/margin_15dp"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_no_background"
             android:gravity="center"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/margin_15dp"
             android:alpha="0.9"
             android:background="@drawable/rounded_corner_button"
             android:gravity="center"
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/margin_15dp"
             android:background="@drawable/rounded_corner_button"
             android:text="Add task"
             android:textStyle="bold"/>
