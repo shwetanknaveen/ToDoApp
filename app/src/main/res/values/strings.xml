@@ -34,4 +34,8 @@
         <item>Shopping</item>
         <item>Cooking</item>
     </string-array>
+    <string name="color_red">#B23121</string>
+    <string name="color_blue">#29487D</string>
+    <string name="color_green">#4DAA57</string>
+    <string name="color_default">#123456</string>
 </resources>

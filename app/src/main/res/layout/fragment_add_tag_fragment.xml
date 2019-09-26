@@ -27,13 +27,13 @@
        <EditText
            android:id="@+id/editTextTagName"
            android:background="@drawable/rounded_corner_no_background"
-           android:layout_width="150dp"
+           android:layout_width="@dimen/btn_width"
            android:layout_height="wrap_content"
            android:hint="Title"
            android:gravity="center"
            android:padding="@dimen/padding_8"
            android:alpha="0.9"
-           android:layout_margin="15dp" />
+           android:layout_margin="@dimen/margin_15dp" />
 
        <Button
            android:id="@+id/btnSelectColor"
@@ -57,8 +57,8 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginTop="20dp"
-           android:layout_marginBottom="20dp"
+           android:layout_marginTop="@dimen/spacing_20dp"
+           android:layout_marginBottom="@dimen/spacing_20dp"
            android:fontFamily="cursive"
            android:text="DELETE TAGS"
            android:textSize="@dimen/txt_size_addtag_fragment"
