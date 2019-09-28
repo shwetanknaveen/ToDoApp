@@ -54,6 +54,7 @@ public class AlarmManagement extends Fragment {
         View view = inflater.inflate(R.layout.fragment_alarm_management, container, false);
         Button btnAlarmTime = view.findViewById(R.id.btnAlarmTime);
         Button btnSetAlarm = view.findViewById(R.id.btnSetAlarm);
+        Button btnCalcelAlarm = view.findViewById(R.id.btnCancelAlarm);
         mTextViewAlarmDetail = view.findViewById(R.id.textViewAlarmDetail);
         mTextViewAlarmDetail.setText("Set alarm for \""+mToDoTask.getTitle()+"\"\nDeadline is -:\n"+
                 mToDoTask.getDateAndTime().substring(0,10)+"\n"+mToDoTask.getDateAndTime().substring(11));
@@ -75,6 +76,12 @@ public class AlarmManagement extends Fragment {
                 c.set(Calendar.MINUTE, mMinute);
                 c.set(Calendar.SECOND, 0);
                 startAlarm(c);
+            }
+        });
+        btnCalcelAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelAlarm();
             }
         });
         return view;
@@ -126,7 +133,7 @@ public class AlarmManagement extends Fragment {
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getContext(), AlertReceiver.class);
         intent.putExtra("taskTitle", mToDoTask.getTitle());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), mToDoTask.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);//req code by default is 1
         Log.i("In AlarmManagement",intent.getStringExtra("taskTitle"));
         if (c.before(Calendar.getInstance())) {
             Toast.makeText(mContext, "Selected time has passed!", Toast.LENGTH_SHORT).show();
@@ -134,7 +141,8 @@ public class AlarmManagement extends Fragment {
         }
         Toast.makeText(mContext, "Alarm has been set!", Toast.LENGTH_LONG).show();
         alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-
+        //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        //To repeat alarm at certain interval
         if (android.os.Build.VERSION.SDK_INT >= 19) {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         } else {
@@ -146,10 +154,11 @@ public class AlarmManagement extends Fragment {
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(mContext, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, mToDoTask.getId(), intent, 0);
 
         alarmManager.cancel(pendingIntent);
         Toast.makeText(mContext, "Alarm cancelled", Toast.LENGTH_SHORT).show();
+        mTextViewAlarmDetail.setText("Alarm for task \""+mToDoTask.getTitle()+"\" has been canceled");
     }
 
 
